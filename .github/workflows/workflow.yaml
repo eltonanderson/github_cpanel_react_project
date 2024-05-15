@@ -28,7 +28,7 @@ jobs:
                   server: ${{ secrets.GIT_CPANEL_REACT_SERVER }}
                   username: ${{ secrets.GIT_CPANEL_REACT_USER }}
                   password: ${{ secrets.GIT_CPANEL_REACT_PWD }}
-                  protocol: ftp
+                  protocol: ftps
                   port: 21
                   timeout: 40000
                   local-dir: ./build/
