@@ -1,5 +1,0 @@
----
-deployment:
-    tasks:
-        - export DEPLOYPATH=/home/novid067/bestfindingstoday.store/
-        - /bin/cp * $DEPLOYPATH
