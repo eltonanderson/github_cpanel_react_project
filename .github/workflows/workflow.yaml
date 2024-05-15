@@ -30,4 +30,5 @@ jobs:
                   password: ${{ secrets.GIT_CPANEL_REACT_PWD }}
                   protocol: ftps
                   port: 21
+                  timeout: 180000
                   local-dir: ./build/
