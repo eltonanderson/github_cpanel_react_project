@@ -1,19 +1,32 @@
-name: Continous Integration
-
-on: push
+on:
+    push:
+        branches:
+            - main
+name: 🚀 Deploy website on push
 
 jobs:
-    continous-integration:
+    web-deploy:
+        name: 🎉 Deploy
         runs-on: ubuntu-latest
-
         steps:
-            - uses: actions/checkout@v4
-            - name: Using Node.js
+            - name: 🚚 Get latest code
+              uses: actions/checkout@v4
+
+            - name: Use Node.js 16
               uses: actions/setup-node@v4
               with:
-                  node-version: 20.
-            - name: run install and build
+                  node-version: '20'
+
+            - name: 🔨 Build Project
               run: |
                   npm install
                   npm run build
-              #   npm run test
+
+            - name: 📂 Sync files
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+              with:
+                  server: ${{ secrets.GIT_CPANEL_REACT_SERVER }}
+                  username: ${{ secrets.GIT_CPANEL_REACT_USER }}
+                  password: ${{ secrets.GIT_CPANEL_REACT_PWD }}
+                  protocol: ${{ secrets.GIT_CPANEL_REACT_PROTOCOL }}
+                  local-dir: ./build/
